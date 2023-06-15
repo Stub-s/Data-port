@@ -12,4 +12,4 @@ parameters = {
 
 response = requests.get("http://api.open-notify.org/iss-pass.json", params=parameters)
 
-jprint(response.json())
+jprint(response.text)

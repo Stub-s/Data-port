@@ -1,4 +1,5 @@
 import requests
+import json
 
 query = '''
 query ($id: Int) { # Define which variables will be used in the query (id)
