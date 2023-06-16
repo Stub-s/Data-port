@@ -1,15 +1,25 @@
 import requests
 import json
+import pandas as pd
+import numpy as np
 
-def jprint(obj):
-    text = json.dumps(obj, sort_keys=True, indent=4)
-    print(text)
+query = '''
+    query ($id: Int) {
+        Media (id: $id, type: ANIME) {
+            id
+            title {
+                romaji
+                english
+                native
+            }
+        }
+    }
+'''
 
-parameters = {
-    "lat": 40.71,
-    "lon": -74
+variables = {
+    'id': 15125
 }
 
-response = requests.get("http://api.open-notify.org/iss-pass.json", params=parameters)
-
-jprint(response.text)
+url = 'https://graphql.anilist.co'
+response = requests.post(url, json={'query': query, 'variables': variables})
+print(response.json())
